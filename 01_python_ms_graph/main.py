@@ -68,3 +68,6 @@ async def make_graph_call(graph: Graph):
     # TODO
     return
 
+
+# Run main
+asyncio.run(main())
