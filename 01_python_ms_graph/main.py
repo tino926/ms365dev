@@ -47,3 +47,24 @@ async def main():
             print('Error:')
             if odata_error.error:
                 print(odata_error.error.code, odata_error.error.message)
+
+async def greet_user(graph: Graph):
+    # TODO
+    return
+
+async def display_access_token(graph: Graph):
+    # TODO
+    return
+
+async def list_inbox(graph: Graph):
+    # TODO
+    return
+
+async def send_mail(graph: Graph):
+    # TODO
+    return
+
+async def make_graph_call(graph: Graph):
+    # TODO
+    return
+
