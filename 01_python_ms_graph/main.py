@@ -1,5 +1,9 @@
 import asyncio
 import configparser
+import sys
+
+print(f'Python version: {sys.version}\n') # Print the Python version
+
 from msgraph.generated.models.o_data_errors.o_data_error import ODataError
 from graph import Graph
 
@@ -8,7 +12,7 @@ async def main():
 
     # Load settings
     config = configparser.ConfigParser()
-    config.read(['config.cfg', 'config.dev.cfg'])
+    config.read(['pri/config.cfg', 'pri/config.dev.cfg'])
     azure_settings = config['azure']
 
     graph: Graph = Graph(azure_settings)
