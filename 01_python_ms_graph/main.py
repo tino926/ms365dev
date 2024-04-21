@@ -104,5 +104,8 @@ async def make_graph_call(graph: Graph):
     return
 
 
+# show current directory
+print(f'Current directory: {sys.path[0]}\n')
+
 # Run main
 asyncio.run(main())
