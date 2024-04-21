@@ -61,21 +61,39 @@ async def display_access_token(graph: Graph):
     return
 
 async def list_inbox(graph: Graph):
-    # Make an API call to list messages in the user's inbox
-    response = await graph.get('me/messages')
+    """
+    Asynchronously fetches and prints the list of messages in the user's inbox using the Microsoft Graph API.
 
-    # Check if the response is successful
-    if response.status_code == 200:
-        # Parse the response to extract the messages
-        messages = response.json().get('value', [])
+    Parameters:
+    - graph: An instance of the Graph class, which should be authenticated and capable of making API calls.
 
-        # Process and print the messages
-        for message in messages:
-            print(f"Subject: {message.get('subject')}, From: {message.get('from').get('emailAddress').get('address')}")
-    else:
-        print(f"Failed to list messages. Status code: {response.status_code}")
+    Returns:
+    - A list of message dictionaries if the request is successful, otherwise None.
+    """
+    try:
+        # Make an API call to list messages in the user's inbox
+        response = await graph.get('me/messages')
 
-    return messages
+        # Check if the response is successful
+        if response.status_code == 200:
+            # Parse the response to extract the messages
+            messages = response.json().get('value', [])
+
+            # Process and print the messages
+            for message in messages:
+                # Extract and print the subject and sender's email address
+                subject = message.get('subject', 'No subject')
+                sender_email = message.get('from', {}).get('emailAddress', {}).get('address', 'No sender')
+                print(f"Subject: {subject}, From: {sender_email}")
+
+            return messages
+        else:
+            print(f"Failed to list messages. Status code: {response.status_code}")
+            return None
+    except Exception as e:
+        # Catch any exceptions that occur during the API call or processing
+        print(f"An error occurred: {e}")
+        return None
 
 async def send_mail(graph: Graph):
     # TODO
