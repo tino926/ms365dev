@@ -61,8 +61,21 @@ async def display_access_token(graph: Graph):
     return
 
 async def list_inbox(graph: Graph):
-    # TODO
-    return
+    # Make an API call to list messages in the user's inbox
+    response = await graph.get('me/messages')
+
+    # Check if the response is successful
+    if response.status_code == 200:
+        # Parse the response to extract the messages
+        messages = response.json().get('value', [])
+
+        # Process and print the messages
+        for message in messages:
+            print(f"Subject: {message.get('subject')}, From: {message.get('from').get('emailAddress').get('address')}")
+    else:
+        print(f"Failed to list messages. Status code: {response.status_code}")
+
+    return messages
 
 async def send_mail(graph: Graph):
     # TODO
