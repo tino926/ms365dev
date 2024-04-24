@@ -57,6 +57,15 @@ async def greet_user(graph: Graph):
     return
 
 async def display_access_token(graph: Graph):
+    """
+    Asynchronously retrieves and prints the user access token from the Microsoft Graph API.
+
+    Parameters:
+    - graph: An instance of the Graph class, which should be authenticated and capable of making API calls.
+
+    Returns:
+    - None. The function prints the user access token to the console.
+    """
     token = await graph.get_user_token()
     print('User token:', token, '\n')
 
