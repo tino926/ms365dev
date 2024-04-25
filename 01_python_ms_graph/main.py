@@ -53,7 +53,14 @@ async def main():
                 print(odata_error.error.code, odata_error.error.message)
 
 async def greet_user(graph: Graph):
-    # TODO
+
+    user = await graph.get_user()
+
+    if user is None:
+        print("log in first")
+        return
+
+    print(f"greet, {user.name}")
     return
 
 async def display_access_token(graph: Graph):
