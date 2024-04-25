@@ -54,13 +54,13 @@ async def main():
 
 async def greet_user(graph: Graph):
 
-    user = await graph.get_user()
+    # user = await graph.get_user()
 
-    if user is None:
-        print("log in first")
-        return
+    # if user is None:
+    #     print("log in first")
+    #     return
 
-    print(f"greet, {user.name}")
+    # print(f"greet, {user.name}")
     return
 
 async def display_access_token(graph: Graph):
