@@ -40,6 +40,7 @@ class Graph:
         request_config = UserItemRequestBuilder.UserItemRequestBuilderGetRequestConfiguration(
             query_parameters=query_params
         )
+        # ^ this cause: type object 'UserItemRequestBuilder' has no attribute 'UserItemRequestBuilderGetRequestConfiguration'
 
         user = await self.user_client.me.get(request_configuration=request_config)
         return user
