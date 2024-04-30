@@ -37,22 +37,12 @@ class Graph:
             select=['displayName', 'mail', 'userPrincipalName']
         )
 
-        # request_config = UserItemRequestBuilder.UserItemRequestBuilderGetRequestConfiguration(
-        #     query_parameters=query_params
-        # )
+        request_config = UserItemRequestBuilder.UserItemRequestBuilderGetRequestConfiguration(
+            query_parameters=query_params
+        )
         # ^ this cause: type object 'UserItemRequestBuilder' has no attribute 'UserItemRequestBuilderGetRequestConfiguration'
+        #   need rolling back to msgraph-sdk==1.2.0
 
-        # user = await self.user_client.me.get(request_configuration=request_config)
-
-        # <-- from phind, still has bug
-        # Create a request builder for the user
-        user_request_builder = self.user_client.me
-
-        # Specify the properties to select
-        user_request_builder = user_request_builder.select(['displayName', 'mail', 'userPrincipalName'])
-
-        # Execute the request to get the user
-        user = await user_request_builder.get()
-        # --> from phind
+        user = await self.user_client.me.get(request_configuration=request_config)
 
         return user
