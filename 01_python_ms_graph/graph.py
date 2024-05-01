@@ -64,5 +64,5 @@ class Graph:
         messages = await self.user_client.me.mail_folders.by_mail_folder_id('inbox').messages.get(
                 request_configuration=request_config)
         return messages
-    
-    
+
+
