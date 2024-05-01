@@ -47,8 +47,17 @@ class Graph:
 
         return user
 
-
     async def get_inbox(self):
+        """
+        Retrieves the latest 25 messages from the user's inbox, including 
+        specific properties such as sender, read status, 
+        received date and time, and subject. The messages are sorted by received 
+        date and time in descending order.
+
+        Returns:
+            A list of Message objects containing the requested properties of the 
+            latest messages in the inbox.
+        """
         # Define the query parameters for the request
         query_params = MessagesRequestBuilder.MessagesRequestBuilderGetQueryParameters(
             # Only request specific properties
@@ -64,7 +73,7 @@ class Graph:
 
         # Make the request to get messages from the inbox
         messages = await self.user_client.me.mail_folders.by_mail_folder_id('inbox').messages.get(
-                request_configuration=request_config)
+            request_configuration=request_config)
         return messages
 
 
