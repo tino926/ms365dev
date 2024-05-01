@@ -46,9 +46,10 @@ class Graph:
         user = await self.user_client.me.get(request_configuration=request_config)
 
         return user
-    
+
 
     async def get_inbox(self):
+        # Define the query parameters for the request
         query_params = MessagesRequestBuilder.MessagesRequestBuilderGetQueryParameters(
             # Only request specific properties
             select=['from', 'isRead', 'receivedDateTime', 'subject'],
@@ -58,9 +59,10 @@ class Graph:
             orderby=['receivedDateTime DESC']
         )
         request_config = MessagesRequestBuilder.MessagesRequestBuilderGetRequestConfiguration(
-            query_parameters= query_params
+            query_parameters=query_params
         )
 
+        # Make the request to get messages from the inbox
         messages = await self.user_client.me.mail_folders.by_mail_folder_id('inbox').messages.get(
                 request_configuration=request_config)
         return messages
