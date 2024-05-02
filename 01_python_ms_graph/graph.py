@@ -12,6 +12,9 @@ from msgraph.generated.models.body_type import BodyType
 from msgraph.generated.models.recipient import Recipient
 from msgraph.generated.models.email_address import EmailAddress
 
+import json
+import os
+
 class Graph:
     settings: SectionProxy
     device_code_credential: DeviceCodeCredential
@@ -76,4 +79,21 @@ class Graph:
             request_configuration=request_config)
         return messages
 
+    # extract functions not in tutorial
 
+    def load_tokens(self):
+        token_file = 'tokens.json'
+        if os.path.exists(token_file):
+            with open(token_file, 'r') as f:
+                tokens = json.load(f)
+                self.device_code_credential.token = tokens.get('token')
+                self.device_code_credential.refresh_token = tokens.get('refresh_token')
+
+    def save_tokens(self):
+        token_file = 'tokens.json'
+        tokens = {
+            'token': self.device_code_credential.token,
+            'refresh_token': self.device_code_credential.refresh_token
+        }
+        with open(token_file, 'w') as f:
+            json.dump(tokens, f)
