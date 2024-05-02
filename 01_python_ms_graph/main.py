@@ -80,25 +80,36 @@ async def display_access_token(graph: Graph):
     token = await graph.get_user_token()
     print('User token:', token, '\n')
 
+
 async def list_inbox(graph: Graph):
+    # Get the inbox of the user
     message_page = await graph.get_inbox()
+    # Check if the message page is not empty and has a value
     if message_page and message_page.value:
         # Output each message's details
         for message in message_page.value:
+            # Print the subject of the message
             print('Message:', message.subject)
+            # Check if the message has a from field and an email address
             if (
                 message.from_ and
                 message.from_.email_address
             ):
+                # Print the name of the email address if it exists
                 print('  From:', message.from_.email_address.name or 'NONE')
             else:
+                # Print NONE if the message does not have a from field or email address
                 print('  From: NONE')
+            # Print the status of the message
             print('  Status:', 'Read' if message.is_read else 'Unread')
+            # Print the date and time the message was received
             print('  Received:', message.received_date_time)
 
         # If @odata.nextLink is present
         more_available = message_page.odata_next_link is not None
+        # Print if more messages are available
         print('\nMore messages available?', more_available, '\n')
+
 
 async def send_mail(graph: Graph):
     # TODO
