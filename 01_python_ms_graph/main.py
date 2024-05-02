@@ -81,39 +81,24 @@ async def display_access_token(graph: Graph):
     print('User token:', token, '\n')
 
 async def list_inbox(graph: Graph):
-    """
-    Asynchronously fetches and prints the list of messages in the user's inbox using the Microsoft Graph API.
+    message_page = await graph.get_inbox()
+    if message_page and message_page.value:
+        # Output each message's details
+        for message in message_page.value:
+            print('Message:', message.subject)
+            if (
+                message.from_ and
+                message.from_.email_address
+            ):
+                print('  From:', message.from_.email_address.name or 'NONE')
+            else:
+                print('  From: NONE')
+            print('  Status:', 'Read' if message.is_read else 'Unread')
+            print('  Received:', message.received_date_time)
 
-    Parameters:
-    - graph: An instance of the Graph class, which should be authenticated and capable of making API calls.
-
-    Returns:
-    - A list of message dictionaries if the request is successful, otherwise None.
-    """
-    try:
-        # Make an API call to list messages in the user's inbox
-        response = await graph.get('me/messages')
-
-        # Check if the response is successful
-        if response.status_code == 200:
-            # Parse the response to extract the messages
-            messages = response.json().get('value', [])
-
-            # Process and print the messages
-            for message in messages:
-                # Extract and print the subject and sender's email address
-                subject = message.get('subject', 'No subject')
-                sender_email = message.get('from', {}).get('emailAddress', {}).get('address', 'No sender')
-                print(f"Subject: {subject}, From: {sender_email}")
-
-            return messages
-        else:
-            print(f"Failed to list messages. Status code: {response.status_code}")
-            return None
-    except Exception as e:
-        # Catch any exceptions that occur during the API call or processing
-        print(f"An error occurred: {e}")
-        return None
+        # If @odata.nextLink is present
+        more_available = message_page.odata_next_link is not None
+        print('\nMore messages available?', more_available, '\n')
 
 async def send_mail(graph: Graph):
     # TODO
