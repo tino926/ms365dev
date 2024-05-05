@@ -97,3 +97,19 @@ class Graph:
         }
         with open(token_file, 'w') as f:
             json.dump(tokens, f)
+
+    async def send_mail(self, subject: str, body: str, recipient: str):
+
+        # Create a new Message object
+        message = Message()
+        
+        # Set the subject and body of the message
+        message.subject = subject
+        message.body = ItemBody(contentType=BodyType.TEXT, content=body)
+        
+        # Create a new Recipient object for the recipient email address
+        recipient_email = Recipient(emailAddress=EmailAddress(address=recipient))
+        
+        # Add the recipient to the message
+        message.to_recipients = [recipient_email]
+
