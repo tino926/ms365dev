@@ -98,11 +98,15 @@ class Graph:
         with open(token_file, 'w') as f:
             json.dump(tokens, f)
 
-    # This method sends an email using the Microsoft Graph API.
-    # It takes three parameters: subject, body, and recipient.
-    # The subject and body are strings representing the email's subject and body content.
-    # The recipient is a string representing the email address of the recipient.
+
     async def send_mail(self, subject: str, body: str, recipient: str):
+        """
+        This method sends an email using the Microsoft Graph API.
+        It takes three parameters: subject, body, and recipient.
+        The subject and body are strings representing the email's subject and body content.
+        The recipient is a string representing the email address of the recipient.
+        """
+
         # Create a new Message object to represent the email.
         message = Message()
         # Set the subject of the email.
