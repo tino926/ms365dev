@@ -17,7 +17,16 @@ async def main():
 
     graph: Graph = Graph(azure_settings)
 
-    await greet_user(graph)
+
+    # ask if load token from cache
+    load_token = input('Load token from cache? (Y/N): ').lower() == 'y'
+
+    if load_token:
+        # Load token from cache
+        await graph.load_token_from_cache()
+    else:
+        # Login
+        await greet_user(graph)
 
     choice = -1
 
@@ -28,6 +37,7 @@ async def main():
         print('2. List my inbox')
         print('3. Send mail')
         print('4. Make a Graph call')
+        print('5. save token to cache')
 
         try:
             choice = int(input())
@@ -45,6 +55,8 @@ async def main():
                 await send_mail(graph)
             elif choice == 4:
                 await make_graph_call(graph)
+            elif choice == 5:
+                await graph.save_tokens()
             else:
                 print('Invalid choice!\n')
         except ODataError as odata_error:

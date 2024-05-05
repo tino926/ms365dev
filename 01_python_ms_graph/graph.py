@@ -79,26 +79,6 @@ class Graph:
             request_configuration=request_config)
         return messages
 
-    # extract functions not in tutorial
-
-    def load_tokens(self):
-        token_file = 'tokens.json'
-        if os.path.exists(token_file):
-            with open(token_file, 'r') as f:
-                tokens = json.load(f)
-                self.device_code_credential.token = tokens.get('token')
-                self.device_code_credential.refresh_token = tokens.get('refresh_token')
-
-    def save_tokens(self):
-        token_file = 'tokens.json'
-        tokens = {
-            'token': self.device_code_credential.token,
-            'refresh_token': self.device_code_credential.refresh_token
-        }
-        with open(token_file, 'w') as f:
-            json.dump(tokens, f)
-
-
     async def send_mail(self, subject: str, body: str, recipient: str):
         """
         This method sends an email using the Microsoft Graph API.
@@ -133,3 +113,29 @@ class Graph:
 
         # Send the email using the Microsoft Graph API.
         await self.user_client.me.send_mail.post(body=request_body)
+
+
+
+
+    # extract functions not in tutorial
+
+    def load_tokens(self):
+        token_file = 'pri/tokens.json'
+        if os.path.exists(token_file):
+            with open(token_file, 'r') as f:
+                tokens = json.load(f)
+                self.device_code_credential.token = tokens.get('token')
+                self.device_code_credential.refresh_token = tokens.get('refresh_token')
+
+    def save_tokens(self):
+        token_file = 'pri/tokens.json'
+        # graph_scopes = self.settings['graphUserScopes']
+        # access_token = self.device_code_credential.get_token(graph_scopes)
+        tokens = {
+            'graph_scopes': self.settings['graphUserScopes'],
+            'access_token': self.device_code_credential.get_token(graph_scopes)
+        }
+        with open(token_file, 'w') as f:
+            json.dump(tokens, f)
+
+
