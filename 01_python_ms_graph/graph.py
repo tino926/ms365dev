@@ -129,13 +129,12 @@ class Graph:
 
     def save_tokens(self):
         token_file = 'pri/tokens.json'
-        # graph_scopes = self.settings['graphUserScopes']
-        # access_token = self.device_code_credential.get_token(graph_scopes)
+        graph_scopes = self.settings['graphUserScopes']
+        access_token = self.device_code_credential.get_token(graph_scopes)
         tokens = {
-            'graph_scopes': self.settings['graphUserScopes'],
-            'access_token': self.device_code_credential.get_token(graph_scopes)
+            'graph_scopes': graph_scopes,
+            'access_token': access_token.token,
+            'refresh_token': access_token.refresh_token
         }
         with open(token_file, 'w') as f:
             json.dump(tokens, f)
-
-
