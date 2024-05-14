@@ -19,12 +19,12 @@ async def main():
 
 
     # ask if load token from cache
-    load_token = False
+    load_token = True
     # load_token = input('Load token from cache? (Y/N): ').lower() == 'y'
 
     if load_token:
         # Load token from cache
-        await graph.load_token_from_cache()
+        graph.load_login_info()
     else:
         # Login
         await greet_user(graph)

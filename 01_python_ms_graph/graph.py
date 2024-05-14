@@ -121,13 +121,13 @@ class Graph:
 
     # extract functions not in tutorial
 
-    def load_tokens(self):
+    def load_login_info(self):
         token_file = 'pri/tokens.json'
         if os.path.exists(token_file):
             with open(token_file, 'r') as f:
                 tokens = json.load(f)
-                self.device_code_credential.token = tokens.get('token')
-                self.device_code_credential.refresh_token = tokens.get('refresh_token')
+                self.device_code_credential.token = tokens.get('access_token')
+                # self.device_code_credential.refresh_token = tokens.get('refresh_token')
 
     def save_login_info(self):
         token_file = 'pri/tokens.json'
