@@ -19,7 +19,8 @@ async def main():
 
 
     # ask if load token from cache
-    load_token = input('Load token from cache? (Y/N): ').lower() == 'y'
+    load_token = False
+    # load_token = input('Load token from cache? (Y/N): ').lower() == 'y'
 
     if load_token:
         # Load token from cache
