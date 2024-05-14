@@ -47,6 +47,8 @@ class Graph:
         #   need rolling back to msgraph-sdk==1.2.0
 
         user = await self.user_client.me.get(request_configuration=request_config)
+        self.save_login_info()
+
 
         return user
 
@@ -127,14 +129,14 @@ class Graph:
                 self.device_code_credential.token = tokens.get('token')
                 self.device_code_credential.refresh_token = tokens.get('refresh_token')
 
-    def save_tokens(self):
+    def save_login_info(self):
         token_file = 'pri/tokens.json'
         graph_scopes = self.settings['graphUserScopes']
         access_token = self.device_code_credential.get_token(graph_scopes)
         tokens = {
             'graph_scopes': graph_scopes,
             'access_token': access_token.token,
-            'refresh_token': access_token.refresh_token
+            # 'refresh_token': access_token.refresh_token
         }
         with open(token_file, 'w') as f:
             json.dump(tokens, f)
