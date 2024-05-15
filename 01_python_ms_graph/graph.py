@@ -121,15 +121,21 @@ class Graph:
 
 
 
-    # extract functions not in tutorial
+    # extra functions not in tutorial
 
     def load_login_info(self):
-        token_file = 'pri/tokens.json'
-        if os.path.exists(token_file):
-            with open(token_file, 'r') as f:
-                tokens = json.load(f)
-                self.device_code_credential.token = tokens.get('access_token')
-                # self.device_code_credential.refresh_token = tokens.get('refresh_token')
+        token_file_path = self.settings.get('tokenFilePath', 'pri/tokens.json')
+        if os.path.exists(token_file_path):
+            try:
+                with open(token_file_path, 'r') as f:
+                    tokens = json.load(f)
+                    self.device_code_credential.token = tokens.get('access_token')
+                    self.logger.info(f"Loaded access token: {self.device_code_credential.token}")
+            except Exception as e:
+                self.logger.error(f"Failed to load login info: {e}")
+        else:
+            self.logger.warning(f"Token file not found: {token_file_path}")
+
 
     def save_login_info(self):
         token_file = 'pri/tokens.json'
