@@ -141,18 +141,18 @@ class Graph:
         token_file = 'pri/tokens.json'
         graph_scopes = self.settings['graphUserScopes']
         access_token = self.device_code_credential.get_token(graph_scopes)
-        
+
         # Validate the token_file path
         if not os.path.isabs(token_file):
             token_file = os.path.join(os.getcwd(), token_file)
-        
+
         tokens = {
             'graph_scopes': graph_scopes,
             'access_token': access_token.token,
             # Uncommenting refresh_token if needed
             #'refresh_token': access_token.refresh_token
         }
-        
+
         try:
             with open(token_file, 'w') as f:
                 json.dump(tokens, f)
