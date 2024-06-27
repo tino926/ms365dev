@@ -134,9 +134,18 @@ async def send_mail(graph: Graph):
         await graph.send_mail('Testing Microsoft Graph', 'Hello world!', user_email or '')
         print('Mail sent.\n')
 
+
 async def make_graph_call(graph: Graph):
-    # TODO
-    return
+    # Fetch the user's profile information
+    user_profile = await graph.get_user_profile()
+    
+    # Check if the user profile is successfully fetched
+    if user_profile:
+        # Print the user's display name and user principal name
+        print('Display Name:', user_profile.display_name)
+        print('User Principal Name:', user_profile.user_principal_name)
+    else:
+        print('Failed to fetch user profile.')
 
 
 # show current directory
