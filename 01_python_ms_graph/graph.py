@@ -12,6 +12,7 @@ from msgraph.generated.models.body_type import BodyType
 from msgraph.generated.models.recipient import Recipient
 from msgraph.generated.models.email_address import EmailAddress
 
+import webbrowser
 import json
 import os
 
@@ -47,6 +48,10 @@ class Graph:
         )
         # ^ this cause: type object 'UserItemRequestBuilder' has no attribute 'UserItemRequestBuilderGetRequestConfiguration'
         #   need rolling back to msgraph-sdk==1.2.0
+
+        
+        # open default browser and go to https://microsoft.com/devicelogin
+        webbrowser.open("https://microsoft.com/devicelogin")
 
         user = await self.user_client.me.get(request_configuration=request_config)
         self.save_login_info()
