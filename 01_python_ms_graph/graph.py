@@ -100,33 +100,35 @@ class Graph:
         The recipient is a string representing the email address of the recipient.
         """
 
-        # Create a new Message object to represent the email.
-        message = Message()
-        # Set the subject of the email.
-        message.subject = subject
+        try:
+            # Create a new Message object to represent the email.
+            message = Message()
+            # Set the subject of the email.
+            message.subject = subject
 
-        # Create an ItemBody object for the email body and set its content type to Text.
-        message.body = ItemBody()
-        message.body.content_type = BodyType.Text
-        # Set the content of the email body.
-        message.body.content = body
+            # Create an ItemBody object for the email body and set its content type to Text.
+            message.body = ItemBody()
+            message.body.content_type = BodyType.Text
+            # Set the content of the email body.
+            message.body.content = body
 
-        # Create a Recipient object for the email recipient.
-        to_recipient = Recipient()
-        # Create an EmailAddress object and set its address to the recipient's email address.
-        to_recipient.email_address = EmailAddress()
-        to_recipient.email_address.address = recipient
-        # Initialize the to_recipients list and append the recipient to it.
-        message.to_recipients = []
-        message.to_recipients.append(to_recipient)
+            # Create a Recipient object for the email recipient.
+            to_recipient = Recipient()
+            # Create an EmailAddress object and set its address to the recipient's email address.
+            to_recipient.email_address = EmailAddress()
+            to_recipient.email_address.address = recipient
+            # Initialize the to_recipients list and append the recipient to it.
+            message.to_recipients = []
+            message.to_recipients.append(to_recipient)
 
-        # Create a SendMailPostRequestBody object and set its message to the created email.
-        request_body = SendMailPostRequestBody()
-        request_body.message = message
+            # Create a SendMailPostRequestBody object and set its message to the created email.
+            request_body = SendMailPostRequestBody()
+            request_body.message = message
 
-        # Send the email using the Microsoft Graph API.
-        await self.user_client.me.send_mail.post(body=request_body)
-
+            # Send the email using the Microsoft Graph API.
+            await self.user_client.me.send_mail.post(body=request_body)
+        except Exception as e:
+            print(f"Failed to send email: {e}")
 
 
 
