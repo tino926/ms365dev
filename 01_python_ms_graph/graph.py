@@ -33,9 +33,13 @@ class Graph:
                                               graph_scopes)
 
     async def get_user_token(self):
-        graph_scopes = self.settings['graphUserScopes']
-        access_token = self.device_code_credential.get_token(graph_scopes)
-        return access_token.token
+        try:
+            graph_scopes = self.settings['graphUserScopes']
+            access_token = self.device_code_credential.get_token(graph_scopes)
+            return access_token.token
+        except Exception as e:
+            print(f"Failed to get user token: {e}")
+            raise
 
     async def get_user(self):
         # Only request specific properties using $select
