@@ -78,6 +78,9 @@ async def greet_user(graph: Graph):
         # Personal accounts, email is in userPrincipalName
         print('Email:', user.mail or user.user_principal_name, '\n')
 
+    email = user.mail if user.mail else user.user_principal_name
+    message = f'Hello, {user.display_name}\nEmail: {email}\n'
+    print(message)
     return
 
 async def display_access_token(graph: Graph):
