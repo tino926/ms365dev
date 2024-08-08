@@ -169,6 +169,8 @@ class Graph:
                 json.dump(tokens, f)
             print(f"Login info saved successfully to {token_file}")
         except IOError as e:
-            print(f"An error occurred while saving login info: {e}")
+            print(f"An I/O error occurred while saving login info: {e}")
+        except json.JSONDecodeError as e:
+            print(f"JSON encoding error: {e}")
         except Exception as e:
             print(f"Unexpected error: {e}")
