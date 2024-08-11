@@ -66,18 +66,37 @@ async def main():
                 print(odata_error.error.code, odata_error.error.message)
 
 async def greet_user(graph: Graph):
+    """
+    An asynchronous function to greet the user.
 
+    This function attempts to retrieve user information from the provided Graph object.
+    If no user information is found (indicating the user is not logged in), it prompts the user to log in.
+    If user information exists, it prints the user's display name and email address.
+    The email address retrieval depends on the type of account (work/school or personal).
+
+    Parameters:
+    - graph: A Graph object used for interacting with the Microsoft Graph API.
+
+    Returns:
+    No return value.
+    """
+
+    # Retrieve user information from the Graph object; this is an asynchronous operation
     user = await graph.get_user()
 
+    # Check if user information was successfully retrieved
     if user is None:
+        # If user information is empty, prompt the user to log in
         print("log in first")
         return
     else:
+        # Print the user's display name
         print('Hello,', user.display_name)
         # For Work/school accounts, email is in mail property
         # Personal accounts, email is in userPrincipalName
         print('Email:', user.mail or user.user_principal_name, '\n')
 
+    # Select the email address based on its existence
     email = user.mail if user.mail else user.user_principal_name
     message = f'Hello, {user.display_name}\nEmail: {email}\n'
     print(message)
