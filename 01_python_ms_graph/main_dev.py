@@ -69,10 +69,14 @@ async def greet_user(graph: Graph):
     """
     An asynchronous function to greet the user.
 
-    This function attempts to retrieve user information from the provided Graph object.
-    If no user information is found (indicating the user is not logged in), it prompts the user to log in.
-    If user information exists, it prints the user's display name and email address.
-    The email address retrieval depends on the type of account (work/school or personal).
+    This function attempts to retrieve user information from the provided Graph 
+    object.
+    If no user information is found (indicating the user is not logged in), it 
+    prompts the user to log in.
+    If user information exists, it prints the user's display name and email 
+    address.
+    The email address retrieval depends on the type of account (work/school or 
+    personal).
 
     Parameters:
     - graph: A Graph object used for interacting with the Microsoft Graph API.
