@@ -162,6 +162,9 @@ async def send_mail(graph: Graph):
 
         await graph.send_mail('Testing Microsoft Graph', 'Hello world!', user_email or '')
         print('Mail sent.\n')
+    else:
+        print('Failed to get user information.')
+        return
 
 
 async def make_graph_call(graph: Graph):
