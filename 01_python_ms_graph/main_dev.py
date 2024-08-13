@@ -161,16 +161,19 @@ async def send_mail(graph: Graph):
     - graph (Graph): The Graph object used to call the Microsoft Graph API.
 
     Returns:
-    None directly, but prints relevant messages based on whether user information is successfully retrieved.
+    None directly, but prints relevant messages based on whether user 
+    information is successfully retrieved.
     """
     # Get the user for their email address
     user = await graph.get_user()
     if user:
-        # If user information is successfully retrieved, use the user's email address to send the email
+        # If user information is successfully retrieved, use the user's email 
+        # address to send the email
         user_email = user.mail or user.user_principal_name
 
         # Call the send_mail method of the Graph object to send the email
-        await graph.send_mail('Testing Microsoft Graph', 'Hello world!', user_email or '')
+        await graph.send_mail('Testing Microsoft Graph', 'Hello world!', 
+                              user_email or '')
         print('Mail sent.\n')
     else:
         # If unable to retrieve user information, print a failure message
