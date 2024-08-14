@@ -182,16 +182,19 @@ async def send_mail(graph: Graph):
 
 
 async def make_graph_call(graph: Graph):
-    # Fetch the user's profile information
-    user_profile = await graph.get_user_profile()
-    
-    # Check if the user profile is successfully fetched
-    if user_profile:
-        # Print the user's display name and user principal name
-        print('Display Name:', user_profile.display_name)
-        print('User Principal Name:', user_profile.user_principal_name)
-    else:
-        print('Failed to fetch user profile.')
+    try:
+        # Fetch the user's profile information
+        user_profile = await graph.get_user_profile()
+        
+        # Check if the user profile is successfully fetched
+        if user_profile:
+            # Print the user's display name and user principal name
+            print('Display Name:', user_profile.display_name)
+            print('User Principal Name:', user_profile.user_principal_name)
+        else:
+            print('Failed to fetch user profile.')
+    except Exception as e:
+        print(f'Error: {e}')
 
 
 # show current directory
