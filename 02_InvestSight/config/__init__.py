@@ -1,0 +1,1 @@
+# InvestSight Config Package

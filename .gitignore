@@ -163,3 +163,59 @@ cython_debug/
 
 **/pri/
 # **/.vscode/
+
+# ==========================================
+# 02_InvestSight 項目專用
+# ==========================================
+
+# 敏感資訊 - 絕對不能提交
+02_InvestSight/.env
+02_InvestSight/**/*.env
+02_InvestSight/.env.*
+02_InvestSight/!*.env.example
+
+# Token 與認證（敏感）
+02_InvestSight/pri/
+02_InvestSight/**/*.tokens.json
+01_python_ms_graph/pri/
+
+# 日誌檔案
+02_InvestSight/logs/*.log
+02_InvestSight/logs/**/*.log
+
+# 抓取的數據（避免大量數據提交）
+02_InvestSight/data/*.csv
+02_InvestSight/data/*.json
+02_InvestSight/data/*.xlsx
+
+# Excel 報表
+02_InvestSight/report/*.xlsx
+02_InvestSight/report/**/*.xlsx
+02_InvestSight/storage/*.xlsx
+02_InvestSight/storage/**/*.xlsx
+
+# 快取與編譯檔案
+02_InvestSight/__pycache__/
+02_InvestSight/**/__pycache__/
+02_InvestSight/*.py[cod]
+02_InvestSight/**/*.py[cod]
+
+# 測試相關
+02_InvestSight/.pytest_cache/
+02_InvestSight/coverage.xml
+02_InvestSight/htmlcov/
+02_InvestSight/.tox/
+
+# IDE 配置（可選，如需共享可註解）
+02_InvestSight/.vscode/
+02_InvestSight/.idea/
+
+# macOS
+02_InvestSight/.DS_Store
+
+# OpenSpec（暫時不提交）
+02_InvestSight/openspec/
+
+# Token 緩存（敏感）
+02_InvestSight/pri/tokens.json
+01_python_ms_graph/pri/tokens.json

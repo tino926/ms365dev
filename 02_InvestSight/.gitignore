@@ -1,0 +1,66 @@
+# ==========================================
+# InvestSight .gitignore
+# ==========================================
+
+# 敏感資訊 - 絕對不能提交
+.env
+.env.*
+!.env.example
+**/*.env
+
+# API 金鑰與憑證
+*.pem
+*.key
+*.crt
+**/credentials.json
+**/service_account.json
+
+# 日誌檔案
+*.log
+logs/*.log
+logs/**/*.log
+
+# 抓取的數據（避免大量數據提交）
+data/*.csv
+data/*.json
+data/*.pkl
+
+# Excel 報表與輸出
+*.xlsx
+report/*.xlsx
+report/**/*.xlsx
+storage/*.xlsx
+storage/**/*.xlsx
+
+# 快取與編譯檔案
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# 測試相關
+.pytest_cache/
+coverage.xml
+htmlcov/
+.tox/
+.nox/
+.cache/
+*.cover
+.coverage
+
+# IDE 配置（可選，如需共享可註解）
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# 臨時檔案
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
