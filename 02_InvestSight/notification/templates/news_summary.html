@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>新聞摘要</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .header { background: #27ae60; color: white; padding: 20px; }
+        .article { border-bottom: 1px solid #eee; padding: 15px 0; }
+        .article h3 { margin: 0 0 10px 0; }
+        .article a { color: #3498db; text-decoration: none; }
+        .article a:hover { text-decoration: underline; }
+        .source { font-size: 12px; color: #999; }
+        .sentiment { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 12px; }
+        .positive { background: #d4edda; color: #155724; }
+        .negative { background: #f8d7da; color: #721c24; }
+        .neutral { background: #fff3cd; color: #856404; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📰 新聞摘要</h1>
+        <p>{{date}}</p>
+    </div>
+    
+    <h2>今日熱門新聞</h2>
+    {{articles_html}}
+    
+    <div class="footer">
+        <p>由 InvestSight 自動產生</p>
+    </div>
+</body>
+</html>

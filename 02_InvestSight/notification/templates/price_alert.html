@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>價格警報</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .alert { background: #fff3cd; border: 1px solid #ffc107; padding: 20px; border-radius: 5px; }
+        .price { font-size: 24px; font-weight: bold; color: #e74c3c; }
+        .symbol { font-size: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="alert">
+        <h1>⚠️ 價格警報</h1>
+        <p>您的關注股票 <span class="symbol">{{symbol}}</span> 價格變動達到閾值</p>
+        
+        <table>
+            <tr>
+                <td><strong>當前價格:</strong></td>
+                <td class="price">${{price}}</td>
+            </tr>
+            <tr>
+                <td><strong>變動:</strong></td>
+                <td>{{change}}</td>
+            </tr>
+            <tr>
+                <td><strong>觸發時間:</strong></td>
+                <td>{{time}}</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="footer">
+        <p>由 InvestSight 自動產生</p>
+    </div>
+</body>
+</html>
