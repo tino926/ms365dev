@@ -24,12 +24,16 @@ class NewsFetcher:
             feed = feedparser.parse(url)
             articles = []
             for entry in feed.entries[:limit]:
+                source_name = 'Unknown'
+                if hasattr(entry, 'source') and entry.source:
+                    source_name = entry.source.get('title', 'Unknown')
+                
                 articles.append({
                     'title': entry.title,
                     'link': entry.link,
                     'published': entry.get('published', datetime.now().isoformat()),
-                    'source': feed.feed.get('title', 'Unknown'),
-                    'summary': entry.get('summary', '')[:500],
+                    'source': source_name,
+                    'summary': entry.get('summary', '')[:500] or entry.title,
                 })
             return articles
         except Exception as e:

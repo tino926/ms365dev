@@ -15,6 +15,11 @@
 **/credentials.json
 **/service_account.json
 
+# Token 緩存
+pri/tokens.json
+pri/*.json
+!pri/.gitkeep
+
 # 日誌檔案
 *.log
 logs/*.log
@@ -29,8 +34,14 @@ data/*.pkl
 *.xlsx
 report/*.xlsx
 report/**/*.xlsx
+report/*.html
+report/**/*.html
+report/*.txt
+report/**/*.txt
 storage/*.xlsx
 storage/**/*.xlsx
+data/reports/
+data/reports/**
 
 # 快取與編譯檔案
 __pycache__/

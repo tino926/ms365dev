@@ -1,0 +1,31 @@
+{
+  "initial_capital": 0.0,
+  "created_at": "2026-03-05T13:34:28.925625",
+  "updated_at": "2026-03-05T13:34:50.955733",
+  "holdings": [
+    {
+      "symbol": "AAPL",
+      "shares": 20,
+      "avg_cost": 150.0,
+      "notes": "\u9577\u671f\u6301\u6709",
+      "created_at": "2026-03-05T13:34:28.926107",
+      "updated_at": "2026-03-05T13:34:50.954380"
+    },
+    {
+      "symbol": "MSFT",
+      "shares": 10,
+      "avg_cost": 350.0,
+      "notes": "\u79d1\u6280\u9f8d\u982d",
+      "created_at": "2026-03-05T13:34:28.927001",
+      "updated_at": "2026-03-05T13:34:50.954906"
+    },
+    {
+      "symbol": "GOOGL",
+      "shares": 16,
+      "avg_cost": 280.0,
+      "notes": "AI \u6982\u5ff5",
+      "created_at": "2026-03-05T13:34:28.927530",
+      "updated_at": "2026-03-05T13:34:50.955696"
+    }
+  ]
+}

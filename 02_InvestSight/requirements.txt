@@ -30,3 +30,6 @@ requests==2.31.0
 
 # 測試
 pytest==7.4.3
+
+# 圖表
+matplotlib==3.8.2
