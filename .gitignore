@@ -179,6 +179,10 @@ cython_debug/
 02_InvestSight/**/*.tokens.json
 01_python_ms_graph/pri/
 
+# 配置文件（敏感）
+02_InvestSight/config/*.json
+!02_InvestSight/config/.gitkeep
+
 # 日誌檔案
 02_InvestSight/logs/*.log
 02_InvestSight/logs/**/*.log
@@ -193,6 +197,10 @@ cython_debug/
 02_InvestSight/report/**/*.xlsx
 02_InvestSight/storage/*.xlsx
 02_InvestSight/storage/**/*.xlsx
+
+# 報告腳本（自動生成）
+02_InvestSight/report/*.py
+02_InvestSight/report/**/*.py
 
 # 快取與編譯檔案
 02_InvestSight/__pycache__/
