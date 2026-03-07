@@ -1,0 +1,38 @@
+# InvestSight 工作流定時任務配置
+# 將以下內容添加到 crontab
+
+# 每日早上 8 點執行（美國股市開盤前）
+0 8 * * 1-5 cd /path/to/02_InvestSight && python3 scripts/workflow.py --email your@email.com --teams
+
+# 每日下午 4 點執行（美國股市收盤後）
+0 16 * * 1-5 cd /path/to/02_InvestSight && python3 scripts/workflow.py --save
+
+# 每週一早上 9 點執行每週工作流
+0 9 * * 1 cd /path/to/02_InvestSight && python3 scripts/workflow.py --type weekly --teams
+
+# === 使用說明 ===
+
+# 1. 編輯 crontab
+crontab -e
+
+# 2. 添加上述任務（修改路徑和郵箱）
+
+# 3. 常見命令
+crontab -l          # 列出定時任務
+crontab -r          # 刪除所有任務
+crontab -e          # 編輯任務
+
+# === Windows 任務排程 ===
+
+# 使用 PowerShell
+# New-ScheduledTask -TaskName "InvestSight" -Trigger (New-ScheduledTaskTrigger -Daily -At 8am) -Action (New-ScheduledTaskAction -Execute "python" -Argument "scripts/workflow.py --email your@email.com") -WorkingDirectory "C:\path\to\02_InvestSight"
+
+# === Docker 定時任務 ===
+
+# docker-compose.yml 添加
+# cron:
+#   image: python:3.11-slim
+#   command: sh -c "pip install -r requirements.txt && sleep 28800 && python scripts/workflow.py --email your@email.com"
+#   volumes:
+#     - .:/app
+#   working_dir: /app

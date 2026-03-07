@@ -42,6 +42,8 @@ storage/*.xlsx
 storage/**/*.xlsx
 data/reports/
 data/reports/**
+data/logs/
+data/logs/**
 
 # 快取與編譯檔案
 __pycache__/
