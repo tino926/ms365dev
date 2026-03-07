@@ -1,6 +1,6 @@
 from configparser import SectionProxy
 from azure.identity import DeviceCodeCredential
-from msgraph import GraphServiceClient
+from msgraph.graph_service_client import GraphServiceClient
 from msgraph.generated.users.item.user_item_request_builder import UserItemRequestBuilder
 from msgraph.generated.users.item.mail_folders.item.messages.messages_request_builder import (
     MessagesRequestBuilder)
@@ -62,6 +62,10 @@ class Graph:
 
 
         return user
+
+    async def get_user_profile(self):
+        """Get user profile (alias for get_user)"""
+        return await self.get_user()
 
     async def get_inbox(self):
         """
@@ -140,12 +144,11 @@ class Graph:
             try:
                 with open(token_file_path, 'r') as f:
                     tokens = json.load(f)
-                    self.device_code_credential.token = tokens.get('access_token')
-                    self.logger.info(f"Loaded access token: {self.device_code_credential.token}")
+                    print(f"Loaded token from {token_file_path}")
             except Exception as e:
-                self.logger.error(f"Failed to load login info: {e}")
+                print(f"Failed to load login info: {e}")
         else:
-            self.logger.warning(f"Token file not found: {token_file_path}")
+            print(f"Token file not found: {token_file_path}")
 
 
     def save_login_info(self):

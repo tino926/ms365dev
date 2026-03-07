@@ -57,7 +57,7 @@ async def main():
             elif choice == 4:
                 await make_graph_call(graph)
             elif choice == 5:
-                await graph.save_tokens()
+                graph.save_login_info()
             else:
                 print('Invalid choice!\n')
         except ODataError as odata_error:
